@@ -42,8 +42,8 @@
   _.last = function(array, n) {
     var xyz = function(n){ 
       var result = [];
-      for(var i = array.length-1; i >= array.length-n; i--){
-        result.unshift(array[i]);
+      for(var i = array.length-n; i < array.length; i++){
+        result.push(array[i]);
       }
       return result;
     }  
