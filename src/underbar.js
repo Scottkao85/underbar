@@ -75,8 +75,7 @@
     }
   };
 
-  // Returns the index at which value can be found in the array, or -1 if value
-  // is not present in the array.
+  // Returns the index at which value ca4444
   _.indexOf = function(array, target){
     // TIP: Here's an example of a function that needs to iterate, which we've
     // implemented for you. Instead of using a standard `for` loop, though,
@@ -94,6 +93,14 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var result = [];
+    _.each(collection, function(el){
+      if(test(el) === true){ 
+        result.push(el);
+      }
+    });
+    console.log(result);
+    return result;
   };
 
   // Return all elements of an array that don't pass a truth test.
