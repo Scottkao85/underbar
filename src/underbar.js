@@ -34,11 +34,29 @@
   _.first = function(array, n) {
     return n === undefined ? array[0] : array.slice(0, n);
   };
+  // array = [0,1,2,3,4,5]
+  //_.first(array, 2) =>[0,1]
 
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+    var xyz = function(n){ 
+      var result = [];
+      for(var i = array.length-1; i >= array.length-n; i--){
+        result.unshift(array[i]);
+      }
+      return result;
+    }  
+    if(n === undefined){
+      return array[array.length-1];
+    }else if(n > array.length){
+      return array;
+    }else{
+      return xyz(n);  
+    }
   };
+  //
+
 
   // Call iterator(value, key, collection) for each element of collection.
   // Accepts both arrays and objects.
