@@ -120,7 +120,12 @@
       if(index === 0){
         result.push(el);
       }else{
+        var number = _.indexOf(result, el)
+        if(number === -1){
+          result.push(el);
+        }
         
+/*   
         var contain = false;
         _.each(result, function(element, i, collection){
           if(element === el){
@@ -131,11 +136,11 @@
         if(contain === false){
           result.push(el);
         }
+*/
       }
     }); // end of first loop
     return result;
   };
-
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
     // map() is a useful primitive iteration function that works a lot
