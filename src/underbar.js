@@ -99,7 +99,6 @@
         result.push(el);
       }
     });
-    console.log(result);
     return result;
   };
 
@@ -107,12 +106,35 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    return _.filter(collection, function(el, index, collection){
+      return !test(el, index, collection);
+    }); 
   };
-
+  
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-  };
+    var result = [];
+    console.log("inside uniq");
+    
+    _.each(array, function(el, index, array){
+      if(index === 0){
+        result.push(el);
+      }else{
+        
+        var contain = false;
+        _.each(result, function(element, i, collection){
+          if(element === el){
+            contain = true;
+          }
+        }); //end of inner loop
 
+        if(contain === false){
+          result.push(el);
+        }
+      }
+    }); // end of first loop
+    return result;
+  };
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
