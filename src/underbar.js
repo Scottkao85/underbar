@@ -298,12 +298,6 @@
       var source = arguments[i];
         for(var key in source){
           result[key] = source[key];
-          //console.log("this is the RESULT:", result);
-          //console.log("this is ARGUMENT: ", i, arguments[i]);
-          ////console.log("this is the OBJ: ", source);
-          //console.log("this is the KEY: ", key);
-          //console.log("this is the ARGUMENT[KEY]:", source[key]);
-          //console.log("*****************************");
       }
     }
     return result;
@@ -313,6 +307,17 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var result = obj;
+    for(var i = 1; i < arguments.length; i++){
+      var source = arguments[i];
+      for(var key in source){
+        if(result[key] === undefined){
+          result[key] = source[key];
+
+        }
+      }
+    }
+    return result;
   };
 
 
