@@ -195,13 +195,13 @@
       var result = collection[0];
       _.each(collection, function(el, index, collection){
         if(index > 0){
-          result = iterator(result, el);
+          result = iterator(result, el, index, collection);
         }
       });
     }else{
       var result = accumulator;
       _.each(collection, function(el, index, collection){
-        result = iterator(result, el);
+        result = iterator(result, el, index, collection);
       });
     }
     return result;
@@ -229,8 +229,19 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
+    if(iterator === undefined){
+      iterator = _.identity
+    }
+    var result = 1;
+    return !!_.reduce(collection, function(result, el, index, collection){
+      if(!!iterator(el) === true){
+        result = result *1;
+      }else{
+        result = result *0;
+      }
+      return result;
+    }, result);
   };
-
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
