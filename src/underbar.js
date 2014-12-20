@@ -293,33 +293,29 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj){
-    var result = obj;
     for(var i = 1; i < arguments.length; i++){
       var source = arguments[i];
-        for(var key in source){
-          result[key] = source[key];
+      for(var key in source){
+        obj[key] = source[key];
       }
     }
-    return result;
+    return obj;
 
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
-    var result = obj;
     for(var i = 1; i < arguments.length; i++){
       var source = arguments[i];
       for(var key in source){
-        if(result[key] === undefined){
-          result[key] = source[key];
-
+        if(obj[key] === undefined){
+          obj[key] = source[key];
         }
       }
     }
-    return result;
+    return obj;
   };
-
 
   /**
    * FUNCTIONS
@@ -360,9 +356,13 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) {
-  };
 
+  _.memoize = function(func) {
+    var result = func();
+    if(!!func() === true){
+    return result;
+    }
+  };
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
   //
@@ -384,6 +384,15 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var arrNum = array.length + 1;
+    console.log("this is ARRNUM: ", arrNum);
+    var randomNum = Math.floor(Math.random()) * arrNum;
+    console.log("this is MATH.RANDOM: ", randomNum);
+    var result = [];
+    for(var i = 0; i < array.length; i++)
+    result.push(array[randomNum]);
+    console.log("this is RESULT: ", result)
+    return result;
   };
 
 
