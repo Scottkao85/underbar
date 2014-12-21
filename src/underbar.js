@@ -383,15 +383,19 @@
   // TIP: This function's test suite will ask that you not modify the original
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
-  _.shuffle = function(array) {
-    var arrNum = array.length + 1;
-    console.log("this is ARRNUM: ", arrNum);
-    var randomNum = Math.floor(Math.random()) * arrNum;
-    console.log("this is MATH.RANDOM: ", randomNum);
+  _.shuffle = function(array) { //[4, 5, 6]
+    // need to randomize the index each loop
+    // once the index has been selected, remove from the temp array
+    var tempArray = array.slice(0);
+    console.log(tempArray);
     var result = [];
-    for(var i = 0; i < array.length; i++)
-    result.push(array[randomNum]);
-    console.log("this is RESULT: ", result)
+    for(var i = 0; i < array.length; i++){
+    var randomNum = Math.round(Math.random() * array.length);
+     // console.log("this is RANDOM I: ", randomNum);
+      tempArray.slice(randomNum);
+      result.push(array[randomNum]);
+    }
+    
     return result;
   };
 
