@@ -345,7 +345,7 @@
         }
         // The new function always returns the originally computed result.
         return result;
-      };
+      } ;
     };
 
     // Memorize an expensive function's results by storing them. You may assume
@@ -358,7 +358,18 @@
     // instead if possible.
 
     _.memoize = function(func) {
-    
+      //var alreadyCalled = false;
+      var result;
+      var resultobj = {}
+      return function() {
+        var slicedArg = Array.prototype.slice.call(arguments, 0);
+          if(resultobj[slicedArg] === undefined){
+            resultobj[slicedArg] = func.apply(this, arguments)
+            return resultobj[slicedArg] ;
+          }else{
+            return resultobj[slicedArg];
+          }
+      }
     };
     // Delays a function for the given number of milliseconds, and then calls
     // it with the arguments supplied.
