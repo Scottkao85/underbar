@@ -337,38 +337,44 @@
     // TIP: We'll return a new function that delegates to the old one, but only
     // if it hasn't been called before.
     return function() {
-      if (!alreadyCalled) {
-        // TIP: .apply(this, arguments) is the standard way to pass on all of the
-        // infromation from one function call to another.
-        result = func.apply(this, arguments);
-        alreadyCalled = true;
-      }
-      // The new function always returns the originally computed result.
-      return result;
+        if (!alreadyCalled) {
+          // TIP: .apply(this, arguments) is the standard way to pass on all of the
+          // infromation from one function call to another.
+          result = func.apply(this, arguments);
+          alreadyCalled = true;
+        }
+        // The new function always returns the originally computed result.
+        return result;
+      };
     };
-  };
 
-  // Memorize an expensive function's results by storing them. You may assume
-  // that the function takes only one argument and that it is a primitive.
-  // memoize could be renamed to oncePerUniqueArgumentList; memoize does the
-  // same thing as once, but based on many sets of unique arguments.
-  //
-  // _.memoize should return a function that, when called, will check if it has
-  // already computed the result for the given argument and return that value
-  // instead if possible.
+    // Memorize an expensive function's results by storing them. You may assume
+    // that the function takes only one argument and that it is a primitive.
+    // memoize could be renamed to oncePerUniqueArgumentList; memoize does the
+    // same thing as once, but based on many sets of unique arguments.
+    //
+    // _.memoize should return a function that, when called, will check if it has
+    // already computed the result for the given argument and return that value
+    // instead if possible.
 
-  _.memoize = function(func) {
-  
-  };
-  // Delays a function for the given number of milliseconds, and then calls
-  // it with the arguments supplied.
-  //
-  // The arguments for the original function are passed after the wait
+    _.memoize = function(func) {
+    
+    };
+    // Delays a function for the given number of milliseconds, and then calls
+    // it with the arguments supplied.
+    //
+    // The arguments for the original function are passed after the wait
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
-  };
-
+    var args = [];
+    for(var i = 2; i < arguments.length; i++){
+      args.push(arguments[i]);
+    }
+    setTimeout(function(){
+     func.apply(null, args)
+    }, wait);
+  }
 
   /**
    * ADVANCED COLLECTION OPERATIONS
